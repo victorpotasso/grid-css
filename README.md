@@ -7,17 +7,17 @@
 
 What is it?
 -----------
-It's an improvement of [Bootstrap Grid](https://github.com/twbs/bootstrap/blob/master/less/grid.less) made with LESS and STYLUS
+It's an improvement of [Bootstrap Grid](https://github.com/twbs/bootstrap/blob/master/less/grid.less) made with [LESS](http://lesscss.org/) and [STYLUS](http://learnboost.github.io/stylus/)
 
 Getting Started
 ---------------
 
-You have to include this Grid in your project and then call the `build-grid` function with your custom parameters.
+You have to include the `Grid file` in your project and then call the `build-grid()` with your custom parameters.
 
 Samples
 -------
 
-## LESS
+- LESS
 
 ```css
 // IMPORT GRID
@@ -35,7 +35,7 @@ Samples
 .build-grid(dm, 12, 100%,   @desktop);
 .build-grid(dl, 12, 1280px, @desktop-large);
 ```
-## STYLUS
+- STYLUS
 
 ```css
 // IMPORT GRID
