@@ -1,0 +1,193 @@
+////////////////
+// BUILD GRID //
+////////////////
+
+@GRID_DEBUG: true;
+
+.build-grid(@id, @columns, @width, @query)
+{
+	.container-fluid
+	{
+		@media @query
+		{
+			.container-fixed();
+		}
+	}
+
+	.row {
+		@media @query
+		{
+			.make-row();
+		}
+	}
+
+	.container
+	{
+		@media @query
+		{
+			.container-fixed();
+			width: @width;
+		}
+	}
+
+	@media @query
+	{
+		.make-grid(@id, @columns);
+		.make-grid-columns(@id, @columns);
+	}
+}
+
+/////////////////
+// Grid system //
+/////////////////
+
+// Create grid for specific class
+.make-grid(@p_id, @p_columns)
+{
+	.float-grid-columns(@p_id, @p_columns);
+	@loop-length: @p_columns;
+	.loop-grid-columns(@loop-length, @p_id, width,  @p_columns);
+	.loop-grid-columns(@loop-length, @p_id, pull,   @p_columns);
+	.loop-grid-columns(@loop-length, @p_id, push,   @p_columns);
+	.loop-grid-columns(@loop-length, @p_id, offset, @p_columns);
+}
+
+.make-grid-columns(@p_id, @p_columns)
+{
+	// Common styles for all sizes of grid columns, widths 1-12
+	// initial
+	.col(@index) when (@index = 1)
+	{
+		@item: ~".col-@{p_id}-@{index}";
+		.col((@index + 1), @item);
+	}
+	// general; "=<" isn't a typo
+	.col(@index, @list) when (@index =< @p_columns)
+	{
+		@item: ~".col-@{p_id}-@{index}";
+		.col((@index + 1), ~"@{list}, @{item}");
+	}
+	// terminal
+	.col(@index, @list) when (@index > @p_columns)
+	{
+		@{list}
+		{
+			position: relative;
+			// Prevent columns from collapsing when empty
+			min-height: 1px;
+		}
+	}
+	.col(1); // kickstart it
+}
+
+.float-grid-columns(@p_id, @p_columns)
+{
+	// initial
+	.col(@index) when (@index = 1)
+	{
+		@item: ~".col-@{p_id}-@{index}";
+		.col((@index + 1), @item);
+	}
+	// general
+	.col(@index, @list) when (@index =< @p_columns)
+	{
+		@item: ~".col-@{p_id}-@{index}";
+		.col((@index + 1), ~"@{list}, @{item}");
+	}
+	// terminal
+	.col(@index, @list) when (@index > @p_columns)
+	{
+		@{list}
+		{
+			float: left;
+		}
+	}
+	.col(1); // kickstart it
+}
+
+.calc-grid-column(@index, @p_id, @p_type, @p_columns) when (@p_type = width) and (@index > 0)
+{
+	.col-@{p_id}-@{index}
+	{
+		width: percentage((@index / @p_columns));
+	}
+}
+.calc-grid-column(@index, @p_id, @p_type, @p_columns) when (@p_type = push) and (@index > 0)
+{
+	.col-@{p_id}-push-@{index}
+	{
+		left: percentage((@index / @p_columns));
+	}
+}
+.calc-grid-column(@index, @p_id, @p_type) when (@p_type = push) and (@index = 0)
+{
+	.col-@{p_id}-push-0
+	{
+		left: auto;
+	}
+}
+.calc-grid-column(@index, @p_id, @p_type, @p_columns) when (@p_type = pull) and (@index > 0)
+{
+	.col-@{p_id}-pull-@{index}
+	{
+		right: percentage((@index / @p_columns));
+	}
+}
+.calc-grid-column(@index, @p_id, @p_type) when (@p_type = pull) and (@index = 0)
+{
+	.col-@{p_id}-pull-0
+	{
+		right: auto;
+	}
+}
+.calc-grid-column(@index, @p_id, @p_type, @p_columns) when (@p_type = offset)
+{
+	.col-@{p_id}-offset-@{index}
+	{
+		margin-left: percentage((@index / @p_columns));
+	}
+}
+
+// Basic looping in LESS
+.loop-grid-columns(@index, @p_id, @p_type, @p_columns) when (@index >= 0)
+{
+	.calc-grid-column(@index, @p_id, @p_type, @p_columns);
+	// next iteration
+	.loop-grid-columns((@index - 1), @p_id, @p_type, @p_columns);
+	.debug(@p_id);
+}
+
+// Centered container element
+.container-fixed()
+{
+	margin-right: auto;
+	margin-left: auto;
+	&:extend(.clearfix all);
+}
+
+// Creates a wrapper for a series of columns
+.make-row()
+{
+	&:extend(.clearfix all);
+}
+
+///////////
+// DEBUG //
+///////////
+.debug(@p_value) when (@GRID_DEBUG=true)
+{
+	&:after
+	{
+		content: "@{p_value}";
+		font-size: 20px;
+		background-color: #fff;
+		border: 1px solid red;
+		padding: 10px;
+		border-radius: 5px;
+		color: red;
+		font-weight: bold;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+	}
+}
