@@ -1,4 +1,4 @@
-## CSS Grind inspired by [Bootstrap Grid](https://github.com/twbs/bootstrap/blob/master/less/grid.less)
+## CSS Grid inspired by [Bootstrap Grid](https://github.com/twbs/bootstrap/blob/master/less/grid.less)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 * Source: [github.com/victorpotasso/grid-css](https://github.com/victorpotasso/grid-css)
@@ -19,7 +19,7 @@ Samples
 
 # LESS
 
-```
+```js
 // IMPORT GRID
 @import "./Grid.less";
 
@@ -37,7 +37,7 @@ Samples
 ```
 # STYLUS
 
-```
+```js
 // IMPORT GRID
 @import "./Grid.styl"
 
@@ -52,7 +52,7 @@ build-grid('m',  6,  100%,   mobile)
 build-grid('ds', 12, 100%,   tablet)
 build-grid('dm', 12, 100%,   desktop)
 build-grid('dl', 12, 1280px, desktop-large)
-``
+```
 Author
 ------
 Victor Potasso
