@@ -17,7 +17,7 @@ You have to include this Grid in your project and then call the `build-grid` fun
 Samples
 -------
 
-# LESS
+## LESS
 
 ```css
 // IMPORT GRID
@@ -35,7 +35,7 @@ Samples
 .build-grid(dm, 12, 100%,   @desktop);
 .build-grid(dl, 12, 1280px, @desktop-large);
 ```
-# STYLUS
+## STYLUS
 
 ```css
 // IMPORT GRID
