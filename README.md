@@ -19,7 +19,7 @@ Samples
 
 # LESS
 
-```js
+```css
 // IMPORT GRID
 @import "./Grid.less";
 
@@ -37,7 +37,7 @@ Samples
 ```
 # STYLUS
 
-```js
+```css
 // IMPORT GRID
 @import "./Grid.styl"
 
