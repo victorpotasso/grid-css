@@ -1,7 +1,7 @@
 ## CSS Grid inspired by [Bootstrap Grid](https://github.com/twbs/bootstrap/blob/master/less/grid.less)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
-* Source: [github.com/victorpotasso/grid-css](https://github.com/victorpotasso/grid-css)
+* Source: [github.com/simbiose/grid-css](https://github.com/simbiose/grid-css)
 * Home Page: [victorpotasso.com/](http://www.victorpotasso.com)
 * Twitter: [@victorpotasso](https://twitter.com/victorpotasso)
 
